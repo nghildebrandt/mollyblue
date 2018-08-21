@@ -6,7 +6,8 @@ export default class extends Controller {
   connect () {
   }
 
-  click (a) {
-    console.log(this, a)
+  click (event) {
+    let coord = event.target.dataset.coordinates
+    console.log(coord)
   }
 }

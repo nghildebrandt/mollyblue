@@ -6,8 +6,20 @@
           .cell-line.horizontal{
             class=cell_line_class([x, y], :horizontal, @moves)
             data-action='click->cell#click'
-            data-coordinates={ start: [x, y], end: [x+1, y] }
+            data-coordinates={ start: [x, y], end: [x+1, y] }.to_json
           }
-          .cell-line.vertical class=cell_line_class([x, y], :vertical, @moves)
-          .cell-line.tangent class=cell_line_class([x, y], :tangent, @moves)
-          .cell-line.secant class=cell_line_class([x, y], :secant, @moves)
+          .cell-line.vertical{
+            class=cell_line_class([x, y], :vertical, @moves)
+            data-action='click->cell#click'
+            data-coordinates={ start: [x, y], end: [x, y+1] }.to_json
+          }
+          .cell-line.tangent{
+            class=cell_line_class([x, y], :tangent, @moves)
+            data-action='click->cell#click'
+            data-coordinates={ start: [x, y], end: [x+1, y+1] }.to_json
+          }
+          .cell-line.secant{
+            class=cell_line_class([x, y], :secant, @moves)
+            data-action='click->cell#click'
+            data-coordinates={ start: [x, y+1], end: [x+1, y] }.to_json
+          }
