@@ -1,0 +1,13 @@
+.board
+  - @width.times do |x|
+    .cell-row
+      - @width.times do |y|
+        .cell data-controller='cell'
+          .cell-line.horizontal{
+            class=cell_line_class([x, y], :horizontal, @moves)
+            data-action='click->cell#click'
+            data-coordinates={ start: [x, y], end: [x+1, y] }
+          }
+          .cell-line.vertical class=cell_line_class([x, y], :vertical, @moves)
+          .cell-line.tangent class=cell_line_class([x, y], :tangent, @moves)
+          .cell-line.secant class=cell_line_class([x, y], :secant, @moves)

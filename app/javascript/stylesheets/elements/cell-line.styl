@@ -1,0 +1,37 @@
+rotated()
+  top: calc(50% - 1px)
+  height: 2px
+  left: -20.5%
+  width: 141%
+  transform: rotate(arguments)
+  transform-origin: 50% 50%
+
+.cell-line
+  position: absolute
+  cursor: pointer
+  background: lightgrey
+
+  &.red
+    background: red
+
+  &.blue
+    background: blue
+
+  &.horizontal
+    top: -1px
+    height: 2px
+    width: 100%
+
+  &.vertical
+    left: -1px
+    width: 2px
+    height: 100%
+
+  &.tangent
+    rotated(45deg)
+
+  &.secant
+    rotated(-45deg)
+
+  &:hover
+    background: green
