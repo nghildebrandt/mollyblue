@@ -5,9 +5,10 @@ class BoardsController < ApplicationController
     @width = 8
     @height = 8
     @turn = true
-    @moves = [
-      { player: 1, start: [4, 4], end: [4, 5] },
-      { player: 2, start: [4, 5], end: [5, 5] }
+    @turns = [
+      Turn.new(1, Move.new(Coord.new(4, 4), Coord.new(5, 5))),
+      Turn.new(2, Move.new(Coord.new(5, 5), Coord.new(5, 4))),
+      Turn.new(1, Move.new(Coord.new(5, 4), Coord.new(4, 4))),
     ]
   end
 end
