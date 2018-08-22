@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   loadBoard () {
-    fetch('/boards/3')
+    fetch('/boards/2')
       .then(response => response.text())
       .then(html => this.element.innerHTML = html)
   }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_053826) do
+ActiveRecord::Schema.define(version: 2018_08_22_094057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,30 @@ ActiveRecord::Schema.define(version: 2018_08_21_053826) do
   create_table "games", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "turn", default: 1
+  end
+
+  create_table "moves", force: :cascade do |t|
+    t.bigint "turn_id"
+    t.integer "first_x"
+    t.integer "first_y"
+    t.integer "last_x"
+    t.integer "last_y"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["turn_id"], name: "index_moves_on_turn_id"
+  end
+
+  create_table "turns", force: :cascade do |t|
+    t.bigint "game_id"
+    t.integer "player"
+    t.integer "first_x"
+    t.integer "first_y"
+    t.integer "last_x"
+    t.integer "last_y"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_turns_on_game_id"
   end
 
 end
