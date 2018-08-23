@@ -11,7 +11,7 @@ class Move
   end
 
   def self.from_direction(top_left, direction)
-    case(direction)
+    case(direction.to_sym)
       when :horizontal
         return Move.new(top_left, top_left.right)
       when :vertical
@@ -20,6 +20,9 @@ class Move
         return Move.new(top_left, top_left.right.down)
       when :secant
         return Move.new(top_left.down, top_left.right)
+      else
+        throw "Unknown direction #{direction}"
     end
+
   end
 end

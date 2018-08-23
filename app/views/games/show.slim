@@ -3,4 +3,5 @@
     h1 New Game
 
   .hero
+    = hidden_field_tag :game_id, @game.id
     div data-controller='board'
