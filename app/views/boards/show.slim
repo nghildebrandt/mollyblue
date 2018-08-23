@@ -2,26 +2,4 @@
   - @width.times do |x|
     .cell-row
       - @width.times do |y|
-        .cell data-controller='cell'
-          - unless y.zero?
-            .cell-line.horizontal{
-              class=cell_line_class(Coord.new(x, y), :horizontal, @game.turns)
-              data-action='click->cell#click'
-              data-coordinates={ start: [x, y], end: [x+1, y] }.to_json
-            }
-          - unless x.zero?
-            .cell-line.vertical{
-              class=cell_line_class(Coord.new(x, y), :vertical, @game.turns)
-              data-action='click->cell#click'
-              data-coordinates={ start: [x, y], end: [x, y+1] }.to_json
-            }
-          .cell-line.tangent{
-            class=cell_line_class(Coord.new(x, y), :tangent, @game.turns)
-            data-action='click->cell#click'
-            data-coordinates={ start: [x, y], end: [x+1, y+1] }.to_json
-          }
-          .cell-line.secant{
-            class=cell_line_class(Coord.new(x, y), :secant, @game.turns)
-            data-action='click->cell#click'
-            data-coordinates={ start: [x, y+1], end: [x+1, y] }.to_json
-          }
+        = render partial: 'cell', locals: { coord: Coord.new(x, y) }

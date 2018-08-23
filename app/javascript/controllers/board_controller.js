@@ -8,7 +8,9 @@ export default class extends Controller {
   }
 
   loadBoard () {
-    fetch('/boards/2')
+    let gameId = document.getElementById('game_id').value
+
+    fetch(`/boards/${gameId}`)
       .then(response => response.text())
       .then(html => this.element.innerHTML = html)
   }

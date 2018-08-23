@@ -1,0 +1,7 @@
+.cell
+  - unless coord.y.zero?
+    = render partial: 'cell_line', locals: { coord: coord, direction: :horizontal }
+  - unless coord.x.zero?
+    = render partial: 'cell_line', locals: { coord: coord, direction: :vertical }
+  = render partial: 'cell_line', locals: { coord: coord, direction: :tangent }
+  = render partial: 'cell_line', locals: { coord: coord, direction: :secant }

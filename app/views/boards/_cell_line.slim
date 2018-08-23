@@ -1,0 +1,4 @@
+= button_to('',
+    game_turns_path(@game.id),
+    params: { turn: { x: coord.x, y: coord.y, direction: direction } },
+    class: cell_line_classes(coord, direction, @game.turns))
