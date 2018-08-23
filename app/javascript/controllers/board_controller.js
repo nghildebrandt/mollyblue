@@ -8,7 +8,7 @@ export default class extends Controller {
   connect () {
     let gameId = document.getElementById('game_id').value
 
-    // this.loadBoard(gameId)
+    this.loadBoard(gameId)
 
     createGameSubscription(gameId, this.loadBoard.bind(this))
   }

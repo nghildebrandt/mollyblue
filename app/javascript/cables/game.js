@@ -7,12 +7,11 @@ export const createGameSubscription = (gameId, callback) => {
     consumer = cable.createConsumer()
 
     let subscription = consumer.subscriptions.create('GameChannel', {
-      id: gameId,
       connected () {
-        console.log("connected")
       },
       received (data) {
-        console.log(data)
+        console.log('do it')
+        callback()
       }
     }) 
 

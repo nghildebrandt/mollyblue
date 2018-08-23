@@ -1,9 +1,10 @@
 class GameChannel < ApplicationCable::Channel
   def subscribed
-    stream_for('1')
-  end
+    # ugly as fuck
 
-  def fuck
-    binding.irb
+    game = Game.where(user_1_id: current_user).or(
+      Game.where(user_2_id: current_user)).first
+
+    stream_for game
   end
 end
