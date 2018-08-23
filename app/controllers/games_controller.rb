@@ -1,12 +1,17 @@
 class GamesController < ApplicationController
-  def new
+  def index
+    @games = Game.all
   end
 
   def create
-    render :show
+    @game = Game.create
+    @game.join(@user)
+
+    render action: show
   end
 
   def show
     @game = Game.find(params[:id])
+    @game.join(@user)
   end
 end

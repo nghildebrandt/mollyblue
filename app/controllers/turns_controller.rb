@@ -7,7 +7,7 @@ class TurnsController < ApplicationController
       turn_params[:direction]
     )
 
-    game.turns.create(move: move, player: 1)
+    game.turns.create(move: move, player: game.player_num(@user))
   end
 
   private

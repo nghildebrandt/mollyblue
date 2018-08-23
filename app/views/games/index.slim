@@ -1,0 +1,7 @@
+h1 Games
+
+- @games.each do |game|
+  = link_to "Join game #{game.id}", game
+  br
+
+= button_to 'New Game', games_path, method: :post

@@ -1,3 +1,9 @@
+- if @game.turn?(@user)
+  h2 its your turn!
+
+- if @game.player_missing?
+  h2 Waiting for other player
+
 .board
   - @width.times do |x|
     .cell-row
