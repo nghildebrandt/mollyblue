@@ -1,4 +1,6 @@
 class TurnsController < ApplicationController
+  protect_from_forgery except: :create
+
   def create
     game = Game.find(params[:game_id])
 

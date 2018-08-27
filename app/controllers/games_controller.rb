@@ -1,8 +1,8 @@
 class GamesController < ApplicationController
+  include GamesHelper
+
   def index
     @games = Game.all
-
-    binding.irb
   end
 
   def create

@@ -1,15 +1,13 @@
 class Game < ApplicationRecord
   has_many :turns
+  has_many :users
+
+  NUMBER_OF_PLAYERS = 2
 
   def join(user)
+    binding.irb
     return if !player_missing?
-    return if [user_1_id, user_2_id].include? user
-
-    if user_2_id? || (!user_1_id? && rand > 0.5)
-      update_attributes user_1_id: user
-    elsif !user_2_id
-      update_attributes user_2_id: user
-    end
+    user = User.create
   end
 
   def turn?(user)
@@ -17,11 +15,12 @@ class Game < ApplicationRecord
   end
 
   def player_missing?
-    not user_1_id? && user_2_id?
+    not User.count == NUMBER_OF_PLAYERS
   end
 
-  def player_num(user)
-    return 1 if user_1_id == user
-    return 2 if user_2_id == user
+  def create_user
+    unless Game.where(User.count > 2)
+      User.create
+    end
   end
 end
