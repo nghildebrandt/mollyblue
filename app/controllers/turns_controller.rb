@@ -8,6 +8,8 @@ class TurnsController < ApplicationController
     )
 
     game.turns.create(move: move, player: game.player_num(@user))
+
+    GameChannel.broadcast_to game, 'update'
   end
 
   private

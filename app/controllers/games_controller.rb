@@ -1,6 +1,8 @@
 class GamesController < ApplicationController
   def index
     @games = Game.all
+
+    binding.irb
   end
 
   def create
