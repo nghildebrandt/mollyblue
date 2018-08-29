@@ -8,11 +8,8 @@ class TurnsController < ApplicationController
       Coord.new(turn_params[:x].to_i, turn_params[:y].to_i),
       turn_params[:direction]
     )
-    binding.irb
 
-    user = User.find(params[:user_id])
-
-    game.turns.create(move: move, player: user.id)
+    game.turns.create(move: move, player: @user)
 
     GameChannel.broadcast_to game, 'update'
   end

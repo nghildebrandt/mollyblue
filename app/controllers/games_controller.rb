@@ -2,15 +2,14 @@ class GamesController < ApplicationController
   include GamesHelper
 
   def index
-    @user = User.create
     @games = Game.all
+    User.create
   end
 
   def create
-    @game = Game.create
-    @game.users.add(current_user)
+    game = Game.create(users: [@user])
 
-    render action: show
+    redirect_to game
   end
 
   def show

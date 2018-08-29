@@ -1,8 +1,7 @@
-= binding.irb
-- if @game.users.turn?(@user)
+- if @game.turn?(@user, @game)
   h2 its your turn!
 
-- if @game.player_missing?
+- if @game.full?
   h2 Waiting for other player
 
 .board
