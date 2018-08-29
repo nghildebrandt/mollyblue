@@ -1,5 +1,6 @@
 class Turn < ActiveRecord::Base
   belongs_to :game
+  belongs_to :user
 
   def move
     @move ||= Move.new(Coord.new(first_x, first_y), Coord.new(last_x, last_y))

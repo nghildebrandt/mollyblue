@@ -7,7 +7,8 @@ class GamesController < ApplicationController
   end
 
   def create
-    game = Game.create(users: [@user])
+    binding.irb
+    game = Game.create(users: [current_user])
 
     redirect_to game
   end
