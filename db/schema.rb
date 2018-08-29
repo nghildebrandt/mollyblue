@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_23_020017) do
+ActiveRecord::Schema.define(version: 2018_08_28_085206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,19 +19,12 @@ ActiveRecord::Schema.define(version: 2018_08_23_020017) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "turn", default: 1
-    t.string "user_1_id"
-    t.string "user_2_id"
   end
 
-  create_table "moves", force: :cascade do |t|
-    t.bigint "turn_id"
-    t.integer "first_x"
-    t.integer "first_y"
-    t.integer "last_x"
-    t.integer "last_y"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["turn_id"], name: "index_moves_on_turn_id"
+  create_table "games_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "game_id", null: false
+    t.index ["user_id", "game_id"], name: "index_games_users_on_user_id_and_game_id"
   end
 
   create_table "turns", force: :cascade do |t|
@@ -43,7 +36,15 @@ ActiveRecord::Schema.define(version: 2018_08_23_020017) do
     t.integer "last_y"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["game_id"], name: "index_turns_on_game_id"
+    t.index ["user_id"], name: "index_turns_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "turns", "users"
 end

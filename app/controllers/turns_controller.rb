@@ -1,4 +1,6 @@
 class TurnsController < ApplicationController
+  protect_from_forgery except: :create
+
   def create
     game = Game.find(params[:game_id])
 
@@ -7,7 +9,7 @@ class TurnsController < ApplicationController
       turn_params[:direction]
     )
 
-    game.turns.create(move: move, player: game.player_num(@user))
+    game.turns.create(move: move, player: @user)
 
     GameChannel.broadcast_to game, 'update'
   end

@@ -1,27 +1,15 @@
 class Game < ApplicationRecord
   has_many :turns
+  has_and_belongs_to_many :users
+  validates_associated :users
 
-  def join(user)
-    return if !player_missing?
-    return if [user_1_id, user_2_id].include? user
+  NUMBER_OF_PLAYERS = 2
 
-    if user_2_id? || (!user_1_id? && rand > 0.5)
-      update_attributes user_1_id: user
-    elsif !user_2_id
-      update_attributes user_2_id: user
-    end
+  def full?
+    users.count >= NUMBER_OF_PLAYERS
   end
 
-  def turn?(user)
-    player_num(user) == turn
-  end
-
-  def player_missing?
-    not user_1_id? && user_2_id?
-  end
-
-  def player_num(user)
-    return 1 if user_1_id == user
-    return 2 if user_2_id == user
+  def turn?(user, game)
+    game.turn = users.sample.id
   end
 end

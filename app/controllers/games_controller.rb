@@ -1,19 +1,19 @@
 class GamesController < ApplicationController
+  include GamesHelper
+
   def index
     @games = Game.all
-
-    binding.irb
+    User.create
   end
 
   def create
-    @game = Game.create
-    @game.join(@user)
+    binding.irb
+    game = Game.create(users: [current_user])
 
-    render action: show
+    redirect_to game
   end
 
   def show
     @game = Game.find(params[:id])
-    @game.join(@user)
   end
 end

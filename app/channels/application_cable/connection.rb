@@ -1,15 +1,9 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-    identified_by :current_user
+    identified_by :uuid
 
     def connect
-      self.current_user = get_user
-    end
-
-    private
-
-    def get_user
-      cookies[:user_id] || reject_unauthorized_connection
+      self.uuid = SecureRandom.urlsafe_base64
     end
   end
 end
